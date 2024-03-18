@@ -1,10 +1,41 @@
-# Agentcy: Multi-Agent Creative Collaboration
+<div align="center">
 
-<p align="center">
-  <img src='./misc/logo1.png' width=888>
+<img width="100px" src="./misc/logo.png" />
+
+# Agentcy
+
+### Multi-Agent Creative Collaboration
+
+<p>
+<img alt="GitHub Contributors" src="https://img.shields.io/github/contributors/amadad/agentcy" />
+<img alt="GitHub Last Commit" src="https://img.shields.io/github/last-commit/amadad/agentcy" />
+<img alt="" src="https://img.shields.io/github/repo-size/amadad/agentcy" />
+<img alt="GitHub Issues" src="https://img.shields.io/github/issues/amadad/agentcy" />
+<img alt="GitHub Pull Requests" src="https://img.shields.io/github/issues-pr/amadad/agentcy" />
+<img alt="Github License" src="https://img.shields.io/badge/License-MIT-yellow.svg" />
+<img alt="Discord" src="https://img.shields.io/discord/1110910277110743103?label=Discord&logo=discord&logoColor=white&style=plastic&color=d7b023)](https://discord.gg/e8j7mgjDUK" />
+<img alt="Twitter" src="https://img.shields.io/twitter/follow/amadad?style=social" />
 </p>
 
-A small team autonomous of agents help you unlock, uncover or explore the potential of your business. Agentcy takes two simple inputs to generate a plan, research and deliverables to help you gain a competitive advantahe.
+</div>
+
+-----
+
+<p align="center">
+  <a href="#-overview">Overview</a> •
+  <a href="#-agents">Agents</a> •
+  <a href="#-tools">Tools</a> •
+  <a href="#-setup">Setup</a> • 
+  <a href="#-conclusion">Conclusion</a>
+  <a href="#-roadmap">Roadmap</a> •
+  <a href="#-license">License</a>
+</p>
+
+-----
+
+A small team autonomous of agents help you unlock, uncover or explore the potential of your business. Agentcy takes two simple inputs to generate a plan, research and deliverables to help you gain a competitive advantage.
+
+-----
 
 ## 📖 Overview
 

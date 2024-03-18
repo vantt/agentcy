@@ -15,40 +15,6 @@ brand_task = input("Please enter the brand or company name: ")
 user_task = input("Please enter the your goal, brief, or problem statement: ")
 
 llm_config_content_assistant = {
-    "functions": [
-        {
-            "name": "research",
-            "description": "research about a given topic, return the research material including reference links",
-            "parameters": {
-                    "type": "object",
-                    "properties": {
-                        "query": {
-                            "type": "string",
-                            "description": "The topic to be researched about",
-                        }
-                    },
-                "required": ["query"],
-            },
-        },
-        {
-            "name": "write_content",
-            "description": "Write content based on the given research material & topic",
-            "parameters": {
-                    "type": "object",
-                    "properties": {
-                        "research_material": {
-                            "type": "string",
-                            "description": "research material of a given topic, including reference links when available",
-                        },
-                        "topic": {
-                            "type": "string",
-                            "description": "The topic of the content",
-                        }
-                    },
-                "required": ["research_material", "topic"],
-            },
-        },
-    ],
     "config_list": config_list,
     "timeout": 120,
 }
@@ -58,7 +24,8 @@ agency_manager = AssistantAgent(
     description="Outlines plan for agents.",
     llm_config={"config_list": config_list},
     system_message=f'''
-    Outline step-by-step tasks for {brand_task} and {user_task} with the team. 
+    You are the Project Manager, focusing on {brand_task}. 
+    Outline step-by-step tasks for {user_task} with the team. 
     Act as a communication hub, maintain high-quality deliverables, and regularly update all stakeholders on progress. 
     Terminate the conversation with "TERMINATE" when all tasks are completed and no further actions are needed.
     '''
@@ -66,18 +33,22 @@ agency_manager = AssistantAgent(
 
 agency_researcher = AssistantAgent(
     name="Agency_Researcher",
-    description="Conducts detailed research to provide insights for executing user-focused tasks.",
+    description="Conducts detailed research to provide insights and information vital for executing user-focused tasks.",
     llm_config=llm_config_content_assistant,
     system_message=f'''
-    Utilize the research function to gather insights about {user_task}, market trends, user pain points, and cultural dynamics relevant to our project. 
-    Focus on delivering clear, actionable information. 
+    As the Lead Researcher, your primary role revolves around {user_task}. 
+    Utilize the research function to gather in-depth insights about market trends, user pain points, and cultural dynamics relevant to our project. 
+    Provide these insights proactively to support the team's strategy and decision-making. In your responses, focus on delivering clear, actionable information. 
     Conclude your participation with "TERMINATE" once all relevant research has been provided and no further analysis is required.
     ''',
+    function_map={
+        "research": research,
+    }
 )
 
 agency_researcher.register_function(
     function_map={
-        "research": research
+        "research": research,
     }
 )
 
@@ -183,6 +154,13 @@ groupchat = GroupChat(agents=[
 manager = GroupChatManager(
     groupchat=groupchat, 
     llm_config={"config_list": config_list}
+)
+
+user_proxy.register_function(
+    function_map={
+        "research": research,
+        "write_content": write_content,
+    }
 )
 
 user_proxy.initiate_chat(

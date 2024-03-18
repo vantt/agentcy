@@ -1,17 +1,17 @@
 import os
 import requests
+import dotenv 
 from bs4 import BeautifulSoup
 import json
 import autogen
 import openai
-from autogen import config_list_from_json, UserProxyAgent, AssistantAgent, GroupChat, GroupChatManager
+from autogen import config_list_from_json, UserProxyAgent
 from langchain.chat_models import ChatOpenAI
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.chains.summarize import load_summarize_chain
 from langchain.prompts import PromptTemplate 
-from dotenv import load_dotenv
 
-load_dotenv()
+dotenv.load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
 BROWSERLESS_API_KEY = os.getenv("BROWSERLESS_API_KEY")
 SERPER_API_KEY = os.getenv("SERPER_API_KEY")
@@ -130,7 +130,7 @@ def research(query):
     user_proxy = autogen.UserProxyAgent(
         name="User_proxy",
         code_execution_config={"last_n_messages": 2, "work_dir": "coding"},
-        is_termination_msg=lambda msg: "TERMINATE" in msg["content"] if msg["content"] else False,
+        is_termination_msg=lambda x: x.get("content", "") and x.get("content", "").rstrip().endswith("TERMINATE"),
         human_input_mode="TERMINATE",
         function_map={
             "search": search,
@@ -147,7 +147,6 @@ def research(query):
 
     # return the last message the expert received
     return user_proxy.last_message()["content"]
-
 
 def write_content(research_material, topic):
     editor = autogen.AssistantAgent(
@@ -209,7 +208,3 @@ def write_content(research_material, topic):
 
     # return the last message the expert received
     return user_proxy.last_message()["content"]
-
-def save_markdown(conversation_log):
-    with open("/logs/conversation_log.md", "a") as file:
-        file.write(conversation_log + "\n")
