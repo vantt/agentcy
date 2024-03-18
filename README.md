@@ -10,8 +10,8 @@
 <img alt="GitHub Contributors" src="https://img.shields.io/github/contributors/amadad/agentcy" />
 <img alt="GitHub Last Commit" src="https://img.shields.io/github/last-commit/amadad/agentcy" />
 <img alt="" src="https://img.shields.io/github/repo-size/amadad/agentcy" />
-<img alt="GitHub Issues" src="https://img.shields.io/github/issues/amadad/agentcy" />
-<img alt="GitHub Pull Requests" src="https://img.shields.io/github/issues-pr/amadad/agentcy" />
+<img alt="GitHub Stars" src="https://img.shields.io/github/stars/amadad/agentcy" />
+<img alt="GitHub Forks" src="https://img.shields.io/github/forks/amadad/agentcy" />
 <img alt="Github License" src="https://img.shields.io/badge/License-MIT-yellow.svg" />
 <img alt="Twitter" src="https://img.shields.io/twitter/follow/amadad?style=social" />
 </p>
